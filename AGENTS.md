@@ -1,4 +1,4 @@
-# Instructions for AI coding agents (opencode and others)
+# Instructions for AI coding agents 
 
 This is a Godot 4.7.2 (GDScript, 3D, Compatibility renderer) project for a competition with strict rules.
 
