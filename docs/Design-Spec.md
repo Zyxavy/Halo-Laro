@@ -110,9 +110,9 @@ Rule 6 does **not** ban royalty-free assets. It allows outside art if the team h
 
 **Done when:** a full match runs with 1 human and 9 bots, the priority rule works, jail and rescue work, and either win condition ends the match correctly.
 
-## 5. Mode Spec: Tumbang Preso (draft)
+## 5. Mode Spec: Tumbang Preso
 
-**Type:** free-for-all with a rotating **Taya** (the guard). **Players:** 8-10. **Map:** 1 (a flat court with a can in a ring at one end and a throw line some distance away).
+**Type:** free-for-all with a rotating **Taya** (the guard). **Confirmed 2026-10-15:** FFA, not teams. **Players:** 8-10. **Map:** 1 (a flat court with a can in a ring at one end and a throw line some distance away).
 
 **Roles**
 
@@ -162,7 +162,7 @@ You are the team lead. This split is my suggestion. Swap it around based on who 
 
 | # | Role | Owns |
 | --- | --- | --- |
-| 1 | **Team Lead (you)** | Architecture, MatchManager, ScoreManager, menu and flow, repo and merges, AI-disclosure log, final submission and form. Your backend background fits the state machine and data side |
+| 1 | **Team Lead** | Architecture, MatchManager, ScoreManager, menu and flow, repo and merges, AI-disclosure log, final submission and form. |
 | 2 | **Gameplay Dev A** | Player controller, camera, input abstraction, **Luksong Baka** |
 | 3 | **Gameplay Dev B** | **Agawan Base** (priority rule, state machine, jail and rescue, bots). The hardest mode, so it gets one dedicated person |
 | 4 | **Gameplay Dev C** | **Tumbang Preso** (throwing, can, Taya rotation, bots) and the shared `BotBase` |

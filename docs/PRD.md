@@ -1,8 +1,8 @@
 # PRD: Halo-Laro
 
-> Partly superseded: for MVP scope, `docs/Design-Spec.md` (3 modes, native PC build, 10-day plan) and `docs/Technical-Architecture.md` win over this doc (4 modes, web build, 7-day plan).
+> Partly superseded: for MVP scope, `docs/Design-Spec.md` (3 modes, native PC build) and `docs/Technical-Architecture.md` win over this doc (4 modes, web build).
 
-*DOST Game Dev Competition entry. Theme: Philippine Games and Sports. Timeline: 7 days. Status: Draft v0.1*
+*DOST Game Dev Competition entry. Theme: Philippine Games and Sports. Timeline: 10 days. Status: Draft v0.1*
 
 ## 1. Overview
 
@@ -109,7 +109,7 @@ A fast-paced party game where players are dropped into a lobby of 8-10 players a
 - [ ] AI usage disclosed, with a prompt and commit log kept.
 - [ ] No content that is offensive or discriminatory.
 
-## 9. 7-Day Plan
+## 9. 10-Day Plan
 
 | Day | Focus | Output |
 | --- | --- | --- |
@@ -119,7 +119,10 @@ A fast-paced party game where players are dropped into a lobby of 8-10 players a
 | 4 | Mode 3 (Tumbang Preso) and Mode 4 (Patintero), the team modes | 4 playable modes |
 | 5 | Second maps, bot tuning, intermission and results/podium screens | Feature-complete |
 | 6 | Mobile testing, balance, bug fixes, sound, polish | Release candidate |
-| 7 | itch.io build, demo script, AI disclosure doc, submission | Submitted |
+| 7 | Full playthrough testing, disclosure sheets, **feature freeze** | Verified build |
+| 8 | Bug fixes only, demo rehearsal, test footage | Demo-ready build |
+| 9 | Record and edit the demo video | Draft video |
+| 10 | itch.io build, demo script, AI disclosure doc, submission | Submitted |
 
 **Cut order if behind schedule:** second maps, then Patintero, then polish effects. Never cut the full flow or mobile controls.
 
@@ -135,10 +138,3 @@ A fast-paced party game where players are dropped into a lobby of 8-10 players a
 ## 10. Post-MVP Backlog
 
 Browse Server and real multiplayer, more modes (Agawan Base, Piko, Taguan), more maps, cosmetics, ranked leaderboards (a good fit for a Supabase backend), and a solo score-attack mode.
-
-## 11. Open Questions
-
-- Final game title? Art style is low-poly 3D, since the game must be 3D.
-- Round length: 3 minutes per round is confirmed for the demo.
-- Who owns which mode and which system (menu/match flow, bots, art, audio)? To be decided.
-- Organizer confirmation of the engine and hosting choice: not needed (N/A).

@@ -28,5 +28,5 @@
 - Dev tools to build alongside: debug overlay (FPS/seed/state/points), bot-only autoplay full match, per-mode debug launcher, config hot-reload.
 
 ## Open / undecided (check before assuming)
-- Design-Spec §9 + PRD §11: title, team split, disclosure-form format, Agawan Base team sizes / base-reach reset, Tumbang Preso FFA-vs-teams, Luksong Baka survivor-split + baka prop shape.
+- Design-Spec §9 + PRD §11: title, team split, disclosure-form format.
 - Cut order if behind: polish → map dressing → bot sophistication. Never cut menu-to-podium flow or mobile-ready input abstraction.
