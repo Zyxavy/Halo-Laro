@@ -1,0 +1,21 @@
+; Engine configuration file.
+; Open once in Godot 4.7.2 so it re-saves this file, then commit.
+
+config_version=5
+
+[application]
+
+config/name="Philippine Games Randomizer (working title)"
+run/main_scene="res://ui/MainMenu.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+Game="*res://autoload/Game.gd"
+Config="*res://autoload/Config.gd"
+Events="*res://autoload/Events.gd"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

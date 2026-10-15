@@ -1,0 +1,20 @@
+# Godot
+.godot/
+*.translation
+
+# Builds and exports
+/builds/
+/export/
+*.exe
+*.pck
+*.zip
+
+# Local-only config (never commit keys or machine paths)
+opencode.json
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

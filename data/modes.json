@@ -1,0 +1,14 @@
+{
+  "luksong_baka": {
+    "scene": "res://modes/luksong_baka/LuksongBakaMode.tscn",
+    "maps": ["res://modes/luksong_baka/maps/Map01.tscn"]
+  },
+  "agawan_base": {
+    "scene": "res://modes/agawan_base/AgawanBaseMode.tscn",
+    "maps": ["res://modes/agawan_base/maps/Map01.tscn"]
+  },
+  "tumbang_preso": {
+    "scene": "res://modes/tumbang_preso/TumbangPresoMode.tscn",
+    "maps": ["res://modes/tumbang_preso/maps/Map01.tscn"]
+  }
+}

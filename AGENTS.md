@@ -1,32 +1,26 @@
-# AGENTS.md: Halo-Laro (Philippine Games Randomizer)
+# Instructions for AI coding agents (opencode and others)
 
-> Greenfield repo: `README.md` + `docs/` only, no code yet. `docs/Technical-Architecture.md` is the build blueprint; `docs/Design-Spec.md` defines the 3 MVP modes; `docs/PRD.md` is older and partly superseded (see scope note).
+This is a Godot 4.7.2 (GDScript, 3D, Compatibility renderer) project for a competition with strict rules.
 
-## Scope (MVP: Design-Spec wins over PRD)
-- 3 modes, 1 map each: `luksong_baka` (FFA elimination), `agawan_base` (team, priority-rule tag), `tumbang_preso` (FFA + rotating Taya). PRD's Patintero/Sipa/4-modes/2-maps are post-MVP.
-- Match: Quick Match only (Browse Server = disabled "Coming Soon"), fake 2–3 s finding screen, human + bots to 8–10 players, 3 distinct modes drawn once per match, 5 s intro / 180 s round / 10 s intermission / podium top 3.
-- Target: Godot 4.x native Windows build recorded for video submission. Web/mobile is post-MVP but code must stay web-ready (Compatibility renderer, Sec. 12 of arch doc).
-- No verified build/test/lint commands exist yet. Run/verify in the Godot editor with the team's pinned version; exported-build check on a non-dev machine before recording.
+## Hard rules
+1. **Originality (competition Rule 7):** game logic, mechanics and source code must be the team's own.
+   Do not paste code from tutorials, templates or open-source projects that implement core mechanics
+   (movement, scoring, bots, mode rules). Explain your approach instead of copying known implementations.
+2. **Disclosure (Rule 8):** every AI-assisted change must be logged. After finishing a task, append a row to
+   `docs/AI_USAGE_LOG.md` (date, tool/model, what it was used for, files touched) and put
+   `AI-assisted:` in the commit message.
+3. **Assets (Rule 6):** never add art/audio without a row in `assets/LICENSES.md`
+   (name, author, link, license, used in). No unlicensed or unknown-source assets.
 
-## Scaffold per arch doc §3 (when creating code)
-- `res://autoload/` (Game, Config, Events, AudioBus), `core/match|scoring|input|bots`, `characters/`, `modes/<mode>/`, `ui/`, `data/config.json|modes.json|bot_names.json`, `assets/.../LICENSES.md`, `tools/`.
-- Godot **4.7.2-stable** for everyone (pinned 2026-10-14; latest stable 4.x — 4.8 is still in dev).
+## Architecture rules
+- Modes are plugins: each mode lives only in `modes/<mode>/` and extends `GameMode`.
+  Do not edit `core/` or `autoload/` unless the task says so; ask the team lead instead.
+- A mode returns a `ModeResult` (`placement`, `points` or `team`). It never touches the UI or ScoreManager directly.
+- Humans and bots use the same `InputProvider` struct. One movement input and at most two actions.
+- No magic numbers: tunables go in `data/config.json` or the mode's config dictionary.
+- Keep it web-ready: Compatibility renderer only, low-poly assets, no GDExtensions or thread-dependent code.
 
-## Invariants (do not break)
-- Modes are plugins: new mode = new folder under `modes/` + one `modes.json` entry. Never import across mode folders; shared changes go through `core/`/`autoload/` (team-lead owned).
-- `GameMode` contract: `setup(players, map, config)`, `start()`, `tick(delta)`, `get_hud_data()`, `force_end()`, `teardown()`, `finished(ModeResult)` signal. Scoring reads only `ModeResult` (`placement`/`points`/`team`); mode code never touches totals.
-- Same `InputProvider` struct (`move: Vector2`, `action_a/b`) for human and bot; one movement + max two actions per mode (touch feasibility).
-- Deterministic rules over physics (distance windows, zones, timers); physics for feel only. One RNG owned by MatchManager, seeded per match and shown in debug overlay.
-- Modes never call UI directly — expose `get_hud_data()` + signals; global `Events` autoload only for cross-cutting events.
-- No tunables in scripts: lobby size, timers, points tables, bot skill, per-mode difficulty live in `data/config.json` / mode config dicts.
-- Scoring is final (`data/config.json`): `placement_points [10,7,5,4,3,2,1]`, team `win 6 / MVP 8 / loss 2`, `round 180s / intermission 10s / intro 5s`. Locked 2026-10-14: Luksong runs multi-lane simultaneous waves with odd-survivor pool dropping to 9; Agawan base-reach resets the field and teams split evenly. Agawan Base `exit_time` priority rule and Tumbang Preso anti-stall (45 s Taya rotation) are spec'd in Design-Spec §§4–5 — implement as written.
-
-## Conventions
-- GDScript, typed signatures; `PascalCase.gd` classes, `snake_case` vars/funcs, `UPPER_SNAKE` consts. Compatibility renderer, low-poly, one directional light, no GDExtension/thread-dependent code, audio only after first input.
-- Git: `main` always runnable, `feature/<area>-<name>`, merge daily, one owner per scene. Commits state what changed + mark `AI-assisted` where true (organizer disclosure requirement).
-- Every asset row logged in `assets/LICENSES.md` (name, author, link, license, used-in); CC0 preferred, hand-make only Filipino-specific props. Core mechanics must be team-written (no copied tutorials/templates).
-- Dev tools to build alongside: debug overlay (FPS/seed/state/points), bot-only autoplay full match, per-mode debug launcher, config hot-reload.
-
-## Open / undecided (check before assuming)
-- Design-Spec §9 + PRD §11: title, team split, disclosure-form format.
-- Cut order if behind: polish → map dressing → bot sophistication. Never cut menu-to-podium flow or mobile-ready input abstraction.
+## Style
+- Typed GDScript, `snake_case` functions/variables, `PascalCase` classes, `UPPER_SNAKE` constants.
+- One scene, one owner: avoid editing `.tscn` files owned by someone else.
+- Small commits; `main` must always launch.

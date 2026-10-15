@@ -1,0 +1,14 @@
+{
+  "placement_points": [10, 7, 5, 4, 3, 2, 1],
+  "team_win_points": 6,
+  "team_mvp_points": 8,
+  "team_loss_points": 2,
+  "round_seconds": 180,
+  "intermission_seconds": 10,
+  "intro_seconds": 5,
+  "results_seconds": 4,
+  "final_results_seconds": 15,
+  "modes_per_match": 3,
+  "lobby_size": 10,
+  "bot_skill_range": [0.4, 0.9]
+}
