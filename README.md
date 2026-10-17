@@ -10,6 +10,8 @@ modes per match (Luksong Baka, Agawan Base, Tumbang Preso), single player vs bot
 ## Run
 1. Install Godot 4.7.2-stable and its export templates.
 2. Open this folder (`project.godot`) in Godot and press F5.
+3. Until each mode implements its round logic, matches run with the shared placeholder mode
+   (`modes/_placeholder/`) — see `docs/DECISIONS.md` for when to flip each mode back in `data/modes.json`.
 
 ## Docs
 - Design specs and team plan, and Technical Architecture: shared docs from the team lead.

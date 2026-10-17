@@ -38,7 +38,8 @@ res://
     luksong_baka/  LuksongBakaMode.gd, scenes/, bots/, maps/
     agawan_base/   AgawanBaseMode.gd, scenes/, bots/, maps/
     tumbang_preso/ TumbangPresoMode.gd, scenes/, bots/, maps/
-  ui/              MainMenu, QuickMatch, ModeIntro, Hud, Intermission, Podium
+  ui/              App, MainMenu, QuickMatchScreen, ModeIntroScreen, MatchHud,
+                   RoundResultsScreen, IntermissionScreen, PodiumScreen, UiScreen, UIKit
   data/            config.json, modes.json, bot_names.json
   assets/          models/, textures/, audio/, LICENSES.md
   tools/           debug overlay, bot-only autoplay
@@ -117,13 +118,18 @@ The `ScoreManager` interprets `kind` using the tables in `data/config.json`. A n
 
 ```json
 {
-  "luksong_baka":  { "scene": "res://modes/luksong_baka/LuksongBakaMode.tscn",  "maps": ["...map_01.tscn"] },
-  "agawan_base":   { "scene": "res://modes/agawan_base/AgawanBaseMode.tscn",    "maps": ["...map_01.tscn"] },
-  "tumbang_preso": { "scene": "res://modes/tumbang_preso/TumbangPresoMode.tscn", "maps": ["...map_01.tscn"] }
+  "luksong_baka": {
+    "name": "Luksong Baka",
+    "tagline": "Time your jump over the baka.",
+    "rules": ["...", "..."],
+    "scene": "res://modes/_placeholder/PlaceholderMode.tscn",
+    "maps": ["res://modes/luksong_baka/maps/Map01.tscn"]
+  }
 }
 ```
 
-Adding a mode means adding a folder and one JSON entry.
+Adding a mode means adding a folder and one JSON entry. `name`, `tagline` and `rules` feed the menu and mode-intro screens.
+Until a mode implements the contract above, its `scene` points at `modes/_placeholder/PlaceholderMode.tscn`; flip it back to the mode's own scene when the mode lands.
 
 ## 7. Players, Input, and Bots
 
