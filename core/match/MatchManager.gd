@@ -19,6 +19,7 @@ var roster: Array[Player] = []
 var picks: Array[Dictionary] = []
 var current_index: int = -1
 var current_mode: GameMode
+var camera_rig: CameraRig  # shared third-person camera; modes get it as `camera`
 
 ## Countdowns the HUD can read each frame.
 var phase_time_left: float = 0.0  # intro, results, intermission, final results
@@ -27,6 +28,12 @@ var round_time_left: float = 0.0  # PLAYING
 var _running: bool = false
 var _result: ModeResult
 var _force_ended: bool = false
+
+
+func _ready() -> void:
+    camera_rig = CameraRig.new()
+    camera_rig.name = "CameraRig"
+    add_child(camera_rig)
 
 
 func start_match(p_roster: Array[Player], seed_value: int = 0) -> void:
@@ -73,6 +80,7 @@ func _run_mode(pick: Dictionary) -> void:
     var map_scene: PackedScene = null
     if pick["map"] != "":
         map_scene = load(pick["map"])
+    current_mode.camera = camera_rig
     current_mode.setup(roster, map_scene, Config.data.duplicate(true))
     mode_intro.emit(pick["id"], current_index, picks.size())
     await _wait(float(Config.get_value("intro_seconds", 5)))
@@ -96,6 +104,7 @@ func _run_mode(pick: Dictionary) -> void:
     await _wait(float(Config.get_value("results_seconds", 4)))
 
     # Take players out of the mode's scene so freeing the mode does not free them.
+    camera_rig.clear()
     _detach_players()
     current_mode.teardown()
     current_mode = null

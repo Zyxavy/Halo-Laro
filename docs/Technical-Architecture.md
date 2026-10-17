@@ -28,7 +28,7 @@
 ```
 res://
   autoload/        Game.gd, Config.gd, Events.gd, AudioBus.gd
-  core/            match/, scoring/, input/, bots/, ui_framework/
+  core/            match/, scoring/, input/, bots/, camera/, ui_framework/
     match/         MatchManager.gd, ModeRegistry.gd, MatchState.gd
     scoring/       ScoreManager.gd, ModeResult.gd
     input/         InputProvider.gd, HumanInput.gd, BotInput.gd
@@ -90,6 +90,7 @@ signal finished(result: ModeResult)
 
 var players: Array[Player]
 var config: Dictionary
+var camera: CameraRig
 
 func setup(p_players: Array[Player], p_map: PackedScene, p_config: Dictionary) -> void: pass
 func start() -> void: pass          # begin the round
@@ -98,6 +99,10 @@ func get_hud_data() -> Dictionary: return {}   # alive count, wave, team score, 
 func force_end() -> void: pass      # called when the timer expires
 func teardown() -> void: pass       # free everything
 ```
+
+Helpers on the base class (additive, signatures above unchanged): `human()` returns the human player or null;
+`place_player(p, parent, pos, yaw_deg)` adds a player into the world; `camera` is the shared `CameraRig`,
+assigned by `MatchManager` before `setup()`.
 
 `ModeResult` carries either **placements** or **direct points**:
 
@@ -145,8 +150,9 @@ Until a mode implements the contract above, its `scene` points at `modes/_placeh
 
 ## 8. Cameras
 
-- One `CameraRig` scene shared by all modes with presets: *follow* (third person), *high follow* (Agawan Base), and *fixed lane* (Luksong Baka).
-- Modes request a preset. They do not build their own cameras.
+- One shared `CameraRig` (`core/camera/CameraRig.gd`), owned by `MatchManager`, with presets: *FOLLOW* (behind the player, orbitable — Tumbang Preso), *HIGH_FOLLOW* (high and angled — Agawan Base), and *FIXED_LANE* (side view along a lane — Luksong Baka).
+- Modes request a preset (`camera.set_preset(...)`) and bind the human (`camera.bind_player(human())`). They do not build their own cameras.
+- The rig also sets the bound player's `move_yaw`, so WASD is always camera-relative. Bots use world-space move vectors.
 
 ## 9. Scoring Flow
 
