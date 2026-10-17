@@ -116,6 +116,11 @@ func _on_mode_finished(result: ModeResult) -> void:
     round_finished.emit(result)
 
 
+## Ends the current countdown early (Back to Menu button, debug skip).
+func skip_phase() -> void:
+    phase_time_left = 0.0
+
+
 func _wait(seconds: float) -> void:
     phase_time_left = seconds
     while phase_time_left > 0.0:

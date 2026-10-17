@@ -1,14 +1,37 @@
 {
   "luksong_baka": {
-    "scene": "res://modes/luksong_baka/LuksongBakaMode.tscn",
+    "name": "Luksong Baka",
+    "tagline": "Time your jump over the baka.",
+    "rules": [
+      "Run toward the cardboard baka and press SPACE at the right moment to jump.",
+      "Each wave the baka gets taller and the timing window shrinks.",
+      "Miss your timing and you are out. The last one standing scores 10 points."
+    ],
+    "scene": "res://modes/_placeholder/PlaceholderMode.tscn",
     "maps": ["res://modes/luksong_baka/maps/Map01.tscn"]
   },
   "agawan_base": {
-    "scene": "res://modes/agawan_base/AgawanBaseMode.tscn",
+    "name": "Agawan Base",
+    "tagline": "Reach the enemy base without getting tagged.",
+    "rules": [
+      "Two teams, two bases. Reach the enemy base to score a point.",
+      "Whoever left their base later can tag players who left earlier.",
+      "A tag pauses the game. The tagged player waits to be rescued by a teammate.",
+      "First team to 3 points, or the most points when time runs out, wins."
+    ],
+    "scene": "res://modes/_placeholder/PlaceholderMode.tscn",
     "maps": ["res://modes/agawan_base/maps/Map01.tscn"]
   },
   "tumbang_preso": {
-    "scene": "res://modes/tumbang_preso/TumbangPresoMode.tscn",
+    "name": "Tumbang Preso",
+    "tagline": "Knock down the can. Dodge the Taya.",
+    "rules": [
+      "Throw your tsinelas at the can from the throw line.",
+      "When the can falls, the Taya must set it up while you grab your slipper.",
+      "Get tagged outside the safe zone and you become the Taya.",
+      "Knock down the can for 2 points. Tag a thrower for 3 points."
+    ],
+    "scene": "res://modes/_placeholder/PlaceholderMode.tscn",
     "maps": ["res://modes/tumbang_preso/maps/Map01.tscn"]
   }
 }

@@ -1,12 +1,17 @@
 ; Engine configuration file.
-; Open once in Godot 4.7.2 so it re-saves this file, then commit.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
 
 config_version=5
 
 [application]
 
-config/name="Philippine Games Randomizer (working title)"
-run/main_scene="res://ui/MainMenu.tscn"
+config/name="Halo-Laro"
+run/main_scene="res://ui/App.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
@@ -14,6 +19,13 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 Game="*res://autoload/Game.gd"
 Config="*res://autoload/Config.gd"
 Events="*res://autoload/Events.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [rendering]
 

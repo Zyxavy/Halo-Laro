@@ -1,6 +1,8 @@
 extends Node
 ## Global game state and input-map setup.
 
+var game_title: String = "Halo-Laro"  # change in one place
+var player_name: String = "Player"
 var match_seed: int = 0
 
 
